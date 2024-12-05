@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Stream</title>
+    <!-- Include HLS.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <video id="videoPlayer" controls autoplay></video>
+
+    <script>
+        if (Hls.isSupported()) {
+            var video = document.getElementById('videoPlayer');
+            var hls = new Hls();
+            hls.loadSource('https://streamserve.ok.ubc.ca/LiveCams/timcam.stream_720p/playlist.m3u8');
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        }
+    </script>
+</body>
+</html>
