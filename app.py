@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import datetime
 import db
+import streamlit.components.v1 as components
 
 # Calculate main and side statistics
 def calculate_statistics():
@@ -59,3 +60,19 @@ st.sidebar.metric("Least Busy Time Today", least_busy_time)
 st.markdown("#### 📈 Historical Trends")
 st.line_chart(db.every_daily_avg(), use_container_width=True)
 st.caption("Line activity for the past week")
+
+components.html("""
+        <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+        <script defer src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+        <video 
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        width="640"
+        height="264"
+        controls 
+        data-setup="{}"
+        >
+        <source src="https://streamserve.ok.ubc.ca/LiveCams/timcam.stream_720p/playlist.m3u8" type="application/x-mpegURL">
+        </video>""")
